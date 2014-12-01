@@ -31,7 +31,7 @@
 
             it('should expire after 1000ms', function( done ) {
                 setTimeout(function() {
-                    (typeof(cache.get(KEY))+"").should.equal('undefined');
+                    (typeof(cache.get(KEY))).should.equal('undefined');
                     done();
                 }, TIMEOUT);
             });
@@ -45,7 +45,7 @@
                 });
 
                 it('should expire the first element cached', function() {
-                    (typeof(cache.get(KEY))+"").should.equal('undefined');
+                    (typeof(cache.get(KEY))).should.equal('undefined');
                 });
 
                 it('should have length 1', function() {
