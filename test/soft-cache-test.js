@@ -6,11 +6,11 @@
     let SoftCache = require("../src/soft-cache.js");
 
     describe('soft cache', function() {
-
+        const TIMEOUT = 1000;
         let cache;
 
         beforeEach(function() {
-            cache = new SoftCache(1);
+            cache = new SoftCache(1, TIMEOUT);
         });
 
         describe('after adding an element', function() {
@@ -29,6 +29,13 @@
                 cache.length.should.equal(1);
             });
 
+            it('should expire after 1000ms', function( done ) {
+                setTimeout(function() {
+                    (typeof(cache.get(KEY))+"").should.equal('undefined');
+                    done();
+                }, TIMEOUT);
+            });
+
             describe('and adding another element', function() {
                 const KEY2 = "FOO2",
                     VALUE2 = "BAR2";
@@ -38,7 +45,7 @@
                 });
 
                 it('should expire the first element cached', function() {
-                    'undefined'.should.equal(typeof(cache.get(KEY)));
+                    (typeof(cache.get(KEY))+"").should.equal('undefined');
                 });
 
                 it('should have length 1', function() {

@@ -1,13 +1,13 @@
 (function() {
 
 
-    function SoftCache( _capacity ) {
+    function SoftCache( _capacity, _timeout ) {
 
         var that = this;
             cache = {},
             keys = [],
             capacity = _capacity || 1000;
-            timeout = 3600000;
+            timeout = _timeout || 3600000;
 
         that.length = 0;
 
