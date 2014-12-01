@@ -10,7 +10,7 @@
         let cache;
 
         beforeEach(function() {
-            cache = new SoftCache();
+            cache = new SoftCache(1);
         });
 
         describe('after adding an element', function() {
@@ -27,6 +27,23 @@
 
             it('should have length 1', function() {
                 cache.length.should.equal(1);
+            });
+
+            describe('and adding another element', function() {
+                const KEY2 = "FOO2",
+                    VALUE2 = "BAR2";
+
+                beforeEach(function() {
+                    cache.put(KEY2, VALUE2);
+                });
+
+                it('should expire the first element cached', function() {
+                    'undefined'.should.equal(typeof(cache.get(KEY)));
+                });
+
+                it('should have length 1', function() {
+                    cache.length.should.equal(1);
+                });
             });
         });
 
