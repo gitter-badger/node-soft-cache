@@ -9,15 +9,26 @@
             capacity = _capacity || 1000;
             timeout = _timeout || 3600000;
 
-        that.length = 0;
+        function clear() {
+            cache = {};
+            keys = [];
+            that.length = 0;
+        }
 
-        function getRemoveFromCacheFn( key ) {
+        function getRemoveFromCacheFn( key, addedAt ) {
+            addedAt = addedAt || cache[key].added;
             return function() {
                 var i;
+
+                if ( addedAt !== cache[key].added ) {
+                    console.log("failed to remove", addedAt);
+                    return;
+                }
+                console.log(addedAt, cache);
                 cache[key] = undefined;
                 for(i = 0; i < keys.length; i++) {
                     if ( keys[i] === key ) {
-                        keys.splice(0,i);
+                        keys.splice(i,1);
                         break;
                     }
                 }
@@ -30,7 +41,7 @@
             getRemoveFromCacheFn(key)();
         }
 
-        this.put = function( key, value ) {
+        this.put = function( key, value, localTimeout ) {
             var currentTimeMillis = new Date().getTime();
 
             keys.push( key );
@@ -42,11 +53,15 @@
                 value : value
             };
 
-            setTimeout( getRemoveFromCacheFn(key), timeout );
+            setTimeout( getRemoveFromCacheFn(key), localTimeout || timeout );
 
             if ( keys.length > capacity ) {
                 removeOldestPair();
             }
+        };
+
+        this.remove = function( key ) {
+            getRemoveFromCacheFn(key)();
         };
 
         this.get = function( key ) {
@@ -56,6 +71,12 @@
                 return value.value;
             }
         };
+
+        this.clear = function() {
+            clear();
+        };
+
+        clear();
     }
 
     module.exports = SoftCache;

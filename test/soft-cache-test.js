@@ -33,8 +33,33 @@
                 setTimeout(function() {
                     (typeof(cache.get(KEY))).should.equal('undefined');
                     done();
-                }, TIMEOUT);
+                }, TIMEOUT + 1000);
             });
+
+            it('should be able to clear the cache', function() {
+                cache.clear();
+                cache.length.should.equal(0);
+            });
+
+            describe('removing the element', function() {
+
+                beforeEach( function() {
+                    cache.remove( KEY );
+                });
+
+                it('should disapear from cache', function() {
+                    cache.length.should.equal(0);
+                });
+
+                it('should invalidate the timeout', function( done ) {
+                    cache.put(KEY, VALUE, 100000);
+                    setTimeout( function() {
+                        cache.get(KEY).should.be.ok;
+                        done();
+                    }, TIMEOUT + 1000);
+                });
+            });
+
 
             describe('and adding another element', function() {
                 const KEY2 = "FOO2",

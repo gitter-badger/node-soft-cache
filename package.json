@@ -2,46 +2,45 @@
     "name" : "node-soft-cache",
     "version": "0.1.0",
     "description" : "A soft cache, key value pair,for node that contains a timeout on how long things stay on cache, default size is 1000 elements and 60 minutes to timeout",
-    "homepage" : "https://github.com/fmsf/node-execution-pool",
-    "author" : { 
+    "homepage" : "https://github.com/fmsf/node-soft-cache",
+    "author" : {
         "name" : "Francisco M.S. Ferreira",
         "email" : "francisco.m.s.ferreira@gmail.com",
         "url" : "https://www.twitter.com/fmsf303"
     },
 
-    "bugs" : "https://github.com/fmsf/node-soft-cache",
+    "bugs" : "https://github.com/fmsf/node-soft-cache/issues",
     "dependencies" : {
         "q" : "~1.0.1"
     },
-    "devDependencies" : {        
+    "devDependencies" : {
         "sinon": "~1.9.1",
         "chai": "~1.9.2"
-    },    
+    },
     "engines": {
         "node": ">=0.6.0"
     },
     "keywords" : [
-        "promise",
-        "promises",
-        "thread",
-        "thread pool",
-        "execution pool",
-        "task pool",
-        "queue",
-        "message queue",
-        "throttling",
-        "task throttling"],
+        "cache",
+        "caching",
+        "soft cache",
+        "soft map",
+        "timed cache",
+        "timed map",
+        "week cache",
+        "week map"
+    ],
     "license" : {
         "type": "MIT",
         "url": "https://github.com/fmsf/node-soft-cache/blob/master/LICENSE"
     },
-    "main" : "src/execution-pool.js",
+    "main" : "src/soft-cache.js",
     "repository": {
         "type": "git",
-        "url": "git@github.com:fmsf/node-execution-pool.git"
+        "url": "git@github.com:fmsf/node-soft-cache.git"
     },
     "scripts" : {
         "test" : "mocha --recursive --harmony"
     }
-    
+
 }
