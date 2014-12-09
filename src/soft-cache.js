@@ -38,8 +38,7 @@
         }
 
         this.put = function( key, value, localTimeout ) {
-            var currentTimeMillis = new Date().getTime(),
-                timeoutId;
+            var currentTimeMillis = new Date().getTime();
 
             if ( !cache[key] ) {
                 keys.push( key );
