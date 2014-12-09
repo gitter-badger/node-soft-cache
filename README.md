@@ -1,3 +1,6 @@
+![Build status](https://api.travis-ci.org/fmsf/node-soft-cache.svg)
+
+
 node-soft-cache
 ===============
 
