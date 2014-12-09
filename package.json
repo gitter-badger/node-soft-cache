@@ -1,6 +1,6 @@
 {
     "name" : "node-soft-cache",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description" : "A soft cache, key value pair,for node that contains a timeout on how long things stay on cache, default size is 1000 elements and 60 minutes to timeout",
     "homepage" : "https://github.com/fmsf/node-soft-cache",
     "author" : {
@@ -10,11 +10,7 @@
     },
 
     "bugs" : "https://github.com/fmsf/node-soft-cache/issues",
-    "dependencies" : {
-        "q" : "~1.0.1"
-    },
     "devDependencies" : {
-        "sinon": "~1.9.1",
         "chai": "~1.9.2"
     },
     "engines": {
@@ -28,7 +24,9 @@
         "timed cache",
         "timed map",
         "week cache",
-        "week map"
+        "week map",
+        "cache timeout",
+        "map timeout"
     ],
     "license" : {
         "type": "MIT",

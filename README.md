@@ -1,7 +1,7 @@
 node-soft-cache
 ===============
 
-This library is an utility for caching in node.js. It emerged from the need of having somehting more than just `var cache = {}` in JavaScript. This cache behaves as a key value pair, allowing to set an expire timeout in the key/values that are put into the cache.
+This library is an utility for caching in node.js. It emerged from the need of having something more than just `var cache = {}` in JavaScript. This cache behaves as a key value pair, allowing to set an expire timeout in the key/values that are put into the cache.
 
 ## API
 
@@ -19,6 +19,11 @@ var SoftCache = require("soft-cache"),
     softCache = new SoftCache(), // no arguments === default values
 ```
 
+Or if you prefer to specify a size and custom timeout (in milliseconds):
+```
+    softCache = new SoftCache(SIZE, TIMEOUT);
+```
+
 
 ### Puting objects into the cache.
 
@@ -26,12 +31,12 @@ To insert objects you have the `.put(key, value)` function. This function receiv
 
 ```
 var someObject = { foo:bar, 1:2 },
-
 cache.put( "key1", someObject );
 
 var someArray = [ 1, 2, 3 ];
 cache.put( "key2", someArray );
 
+// adding an object that will expire in 10 seconds
 cache.put( "key3", anotherObject, 10000 );
 
 ```
@@ -39,7 +44,7 @@ cache.put( "key3", anotherObject, 10000 );
 
 ### Getting objects from the cache
 
-To get an objet you just need to call `.get( "someKey" )`. If the item exists it will return itself.
+To get an objet you just need to call `.get( "aKey" )`. If the item exists it will return itself.
 
 ```
 var objectFromCache = cache.get( "key1" );
@@ -59,4 +64,3 @@ If you need to clear the cache and reset it to an empty state, thus releasing al
 ```
 cache.clear();
 ```
-
