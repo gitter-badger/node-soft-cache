@@ -1,5 +1,5 @@
 {
-    "name" : "node-soft-cache",
+    "name" : "soft-cache",
     "version": "1.0.0",
     "description" : "A soft cache, key value pair,for node that contains a timeout on how long things stay on cache, default size is 1000 elements and 60 minutes to timeout",
     "homepage" : "https://github.com/fmsf/node-soft-cache",
