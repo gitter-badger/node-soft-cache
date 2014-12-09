@@ -15,17 +15,13 @@
             that.length = 0;
         }
 
-        function getRemoveFromCacheFn( key, addedAt ) {
-            addedAt = addedAt || cache[key].added;
+        function getRemoveFromCacheFn( key ) {
             return function() {
                 var i;
 
-                if ( addedAt !== cache[key].added ) {
-                    console.log("failed to remove", addedAt);
-                    return;
-                }
-                console.log(addedAt, cache);
-                cache[key] = undefined;
+                clearTimeout( cache[key].timeoutId );
+
+                delete cache[key];
                 for(i = 0; i < keys.length; i++) {
                     if ( keys[i] === key ) {
                         keys.splice(i,1);
@@ -33,7 +29,7 @@
                     }
                 }
                 that.length = keys.length;
-            }
+            };
         }
 
         function removeOldestPair() {
@@ -42,9 +38,14 @@
         }
 
         this.put = function( key, value, localTimeout ) {
-            var currentTimeMillis = new Date().getTime();
+            var currentTimeMillis = new Date().getTime(),
+                timeoutId;
 
-            keys.push( key );
+            if ( !cache[key] ) {
+                keys.push( key );
+            } else { // if the key already exists, clear previous timeout
+                clearTimeout( cache[key].timeoutId );
+            }
 
             that.length = keys.length;
 
@@ -53,7 +54,7 @@
                 value : value
             };
 
-            setTimeout( getRemoveFromCacheFn(key), localTimeout || timeout );
+            cache[key].timeoutId = setTimeout( getRemoveFromCacheFn(key), localTimeout || timeout );
 
             if ( keys.length > capacity ) {
                 removeOldestPair();
