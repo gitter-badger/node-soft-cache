@@ -3,7 +3,7 @@
 
     function SoftCache( _capacity, _timeout ) {
 
-        var that = this;
+        var that = this,
             cache = {},
             keys = [],
             capacity = _capacity || 1000;
