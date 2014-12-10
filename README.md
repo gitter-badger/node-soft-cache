@@ -3,6 +3,7 @@
 
 node-soft-cache
 ===============
+https://www.npmjs.com/package/soft-cache
 
 This library is an utility for caching in node.js. It emerged from the need of having something more than just `var cache = {}` in JavaScript. This cache behaves as a key value pair, allowing to set an expire timeout in the key/values that are put into the cache.
 
