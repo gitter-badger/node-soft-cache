@@ -1,5 +1,5 @@
 (function() {
-
+    "use strict";
 
     function SoftCache( _capacity, _timeout ) {
 
