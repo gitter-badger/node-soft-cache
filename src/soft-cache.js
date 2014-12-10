@@ -6,7 +6,7 @@
         var that = this,
             cache = {},
             keys = [],
-            capacity = _capacity || 1000;
+            capacity = _capacity || 1000,
             timeout = _timeout || 3600000;
 
         function clear() {
